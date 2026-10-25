@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f8f5f2" />
+  <title>LOVEVERSE — Our Little World</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">♡</span><span>LOVEVERSE<small>OUR LITTLE WORLD</small></span></a>
+    <div class="top-actions">
+      <span id="connectionBadge" class="connection-badge"><i></i> Demo mode</span>
+      <button id="leaveRoomBtn" class="btn btn-quiet hidden">Keluar room</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section id="welcomeView" class="welcome-view">
+      <div class="hero-copy">
+        <span class="eyebrow">A LITTLE SPACE FOR TWO</span>
+        <h1>Jarak boleh jauh,<br><em>kita tetap dekat.</em></h1>
+        <p>Bikin momen kecil jadi kenangan besar. Main game, saling mengenal, dan bangun dunia kecil kalian berdua.</p>
+        <div class="hero-pills"><span>♡ Couple games</span><span>✦ Real-time room</span><span>☁️ Long distance friendly</span></div>
+      </div>
+      <div class="room-card">
+        <div class="card-sparkle">✦</div>
+        <div class="card-icon">♡</div>
+        <h2>Masuk ke dunia kalian</h2>
+        <p class="muted">Buat room baru atau gabung pakai kode dari pasanganmu.</p>
+        <label for="playerName">Nama panggilan kamu</label>
+        <input id="playerName" maxlength="24" placeholder="Contoh: Sayang / Bubu" autocomplete="nickname">
+        <button id="createRoomBtn" class="btn btn-primary full">Buat room baru <span>↗</span></button>
+        <div class="or-divider"><span>atau gabung room</span></div>
+        <div class="join-row"><input id="roomCodeInput" maxlength="6" placeholder="KODE ROOM" aria-label="Kode room"><button id="joinRoomBtn" class="btn btn-dark">Gabung</button></div>
+        <p id="welcomeStatus" class="status-line" role="status"></p>
+        <p class="tiny-note">Tips: kirim kode room ke pasanganmu. Jangan bagikan ke orang lain.</p>
+      </div>
+    </section>
+
+    <section id="appView" class="app-view hidden">
+      <div class="room-banner">
+        <div><span class="eyebrow">YOUR PRIVATE LITTLE WORLD</span><h1 id="roomHeading">Our little world <span>♡</span></h1><p id="roomSubheading" class="muted">Satu room, dua hati.</p></div>
+        <div class="room-code-box"><span>KODE ROOM</span><strong id="roomCodeDisplay">------</strong><button id="copyCodeBtn" class="copy-btn">Salin kode</button></div>
+      </div>
+      <div class="players-strip" id="playersStrip"></div>
+
+      <nav class="game-nav" aria-label="Pilih permainan">
+        <button class="nav-item active" data-panel="quizPanel"><span>✦</span> Kenal Kita</button>
+        <button class="nav-item" data-panel="truthPanel"><span>♡</span> Truth or Dare</button>
+        <button class="nav-item" data-panel="memoryPanel"><span>▤</span> Memories</button>
+        <button class="nav-item" data-panel="miniPanel"><span>✿</span> Mini Games</button>
+        <button class="nav-item" data-panel="dreamPanel"><span>⌂</span> Dream House</button>
+        <button class="nav-item" data-panel="detectivePanel"><span>⌕</span> Love Detective</button>
+        <button class="nav-item" data-panel="datePanel"><span>☾</span> Virtual Date</button>
+      </nav>
+
+      <section id="quizPanel" class="game-panel active">
+        <div class="section-heading"><div><span class="eyebrow">GAME 01</span><h2>Seberapa kenal kita?</h2><p>Jawab pertanyaan tentang pasanganmu. Cocokkan jawaban kalian.</p></div><div class="big-emoji">💌</div></div>
+        <div class="game-card">
+          <div class="progress-row"><span id="quizCount">Pertanyaan 1 dari 5</span><span id="quizScore">Skor cocok: 0</span></div><div class="progress-track"><div id="quizProgress" class="progress-fill"></div></div>
+          <h3 id="quizQuestion">Apa ide date paling ideal?</h3>
+          <div id="quizOptions" class="option-grid"></div>
+          <div class="game-footer"><p id="quizFeedback" class="feedback">Pilih jawabanmu, lalu lihat jawaban pasangan.</p><button id="nextQuizBtn" class="btn btn-primary" disabled>Berikutnya →</button></div>
+        </div>
+      </section>
+
+      <section id="truthPanel" class="game-panel">
+        <div class="section-heading"><div><span class="eyebrow">GAME 02</span><h2>Truth or Dare</h2><p>Pilih jujur atau tantangan kecil yang manis. Tetap saling nyaman, ya.</p></div><div class="big-emoji">🎲</div></div>
+        <div class="game-card centered-card"><div id="todIcon" class="tod-icon">♡</div><span class="eyebrow" id="todType">YOUR TURN</span><h3 id="todPrompt">Siap untuk pertanyaan berikutnya?</h3><p class="muted">Kamu boleh skip kapan saja. Kenyamanan kalian nomor satu.</p><div class="button-row"><button id="truthBtn" class="btn btn-outline">Truth 💭</button><button id="dareBtn" class="btn btn-primary">Dare ✨</button></div><button id="newTodBtn" class="btn btn-quiet">Acak lagi</button><div id="todStatus" class="feedback"></div></div>
+      </section>
+
+      <section id="memoryPanel" class="game-panel">
+        <div class="section-heading"><div><span class="eyebrow">GAME 03</span><h2>Our Memories</h2><p>Simpan momen yang pengin kalian ingat lagi nanti.</p></div><div class="big-emoji">📖</div></div>
+        <div class="memory-composer game-card"><label for="memoryText">Kenangan baru</label><textarea id="memoryText" maxlength="500" rows="3" placeholder="Hari ini aku senang karena..."></textarea><div class="composer-footer"><span class="muted tiny-note">Maksimal 500 karakter</span><button id="addMemoryBtn" class="btn btn-primary">Simpan kenangan +</button></div></div>
+        <div id="memoryList" class="memory-list"></div>
+      </section>
+
+      <section id="miniPanel" class="game-panel">
+        <div class="section-heading"><div><span class="eyebrow">GAME 04</span><h2>Mini Games</h2><p>Permainan singkat buat adu hoki dan ketawa bareng.</p></div><div class="big-emoji">🎮</div></div>
+        <div class="mini-tabs"><button class="mini-tab active" data-mini="ttt">Tic-tac-toe</button><button class="mini-tab" data-mini="rps">Batu Gunting Kertas</button><button class="mini-tab" data-mini="word">Sambung Kata</button><button class="mini-tab" data-mini="emoji">Tebak Emoji</button></div>
+        <div id="tttMini" class="mini-game game-card"><div class="mini-game-head"><h3>Tic-tac-toe</h3><p id="tttStatus">Giliran pemain pertama (X).</p></div><div id="tttBoard" class="ttt-board"></div><button id="resetTttBtn" class="btn btn-outline">Mulai ulang</button></div>
+        <div id="rpsMini" class="mini-game game-card hidden"><div class="mini-game-head"><h3>Batu, Gunting, Kertas</h3><p id="rpsStatus">Pilih simbolmu. Hasil tersimpan di room.</p></div><div class="rps-options"><button data-rps="batu">✊<span>Batu</span></button><button data-rps="gunting">✌️<span>Gunting</span></button><button data-rps="kertas">✋<span>Kertas</span></button></div><div id="rpsResult" class="result-pill">Belum ada pilihan</div></div>
+        <div id="wordMini" class="mini-game game-card hidden"><div class="mini-game-head"><h3>Sambung Kata</h3><p id="wordPrompt">Mulai dengan kata apa saja.</p></div><div class="join-row"><input id="wordInput" maxlength="30" placeholder="Ketik kata..."><button id="sendWordBtn" class="btn btn-primary">Kirim</button></div><div id="wordHistory" class="word-history"></div></div>
+        <div id="emojiMini" class="mini-game game-card hidden"><div class="mini-game-head"><h3>Tebak Emoji</h3><p id="emojiQuestion">Apa judul film atau aktivitas ini?</p></div><div id="emojiPuzzle" class="emoji-puzzle">🚢💔🌊</div><div class="join-row"><input id="emojiAnswer" maxlength="60" placeholder="Tulis jawabanmu..."><button id="checkEmojiBtn" class="btn btn-primary">Cek</button></div><p id="emojiFeedback" class="feedback"></p><button id="nextEmojiBtn" class="btn btn-quiet">Teka-teki berikutnya ↻</button></div>
+      </section>
+
+      <section id="dreamPanel" class="game-panel">
+        <div class="section-heading"><div><span class="eyebrow">GAME 05</span><h2>Dream House</h2><p>Kumpulkan hati dan dekorasi rumah impian kalian bersama.</p></div><div class="big-emoji">🏡</div></div>
+        <div class="dream-layout"><div class="dream-house game-card"><div class="sky">☁️　　　　☁️</div><div id="houseScene" class="house-scene"><div class="house-roof"></div><div class="house-body"><div class="house-window">♡</div><div class="house-door"></div><div id="houseDecor" class="house-decor"></div></div><div class="house-ground">🌱　🌷　🌿　🌼　🌱</div></div><div class="dream-stats"><span>♡ <strong id="coinCount">0</strong> love coins</span><button id="earnCoinBtn" class="btn btn-primary">Kumpulkan hati +1</button></div></div><div class="decor-shop game-card"><h3>Decor shop</h3><p class="muted">Beli dekorasi pakai love coins.</p><div id="decorItems" class="decor-items"></div></div></div>
+      </section>
+
+      <section id="detectivePanel" class="game-panel">
+        <div class="section-heading"><div><span class="eyebrow">GAME 06</span><h2>Love Detective</h2><p>Pecahkan petunjuk bareng untuk membuka pesan rahasia.</p></div><div class="big-emoji">🕵️</div></div>
+        <div class="game-card detective-card"><div class="case-file"><span>CASE #001</span><span>CLASSIFIED WITH LOVE</span></div><div class="clue-icon">🔐</div><h3>Pesan yang terkunci</h3><p id="detectiveClue">Aku selalu ada di awal hubungan kita. Tanggal ini jadi spesial setiap tahun.</p><div class="join-row"><input id="detectiveAnswer" maxlength="40" placeholder="Masukkan jawaban..."><button id="solveDetectiveBtn" class="btn btn-primary">Pecahkan</button></div><p id="detectiveFeedback" class="feedback"></p><div id="secretMessage" class="secret-message hidden">💌 Rahasia terbuka: “Hal paling berharga bukan tempatnya, tapi orang yang menemaninya.”</div><p class="tiny-note">Petunjuk demo: jawab <b>anniversary</b> atau <b>hari jadian</b>.</p></div>
+      </section>
+
+      <section id="datePanel" class="game-panel">
+        <div class="section-heading"><div><span class="eyebrow">GAME 07</span><h2>Virtual Date Night</h2><p>Rencanakan kencan virtual kalian. Pilih aktivitas, lalu simpan rencana bersama.</p></div><div class="big-emoji">🌙</div></div>
+        <div class="date-layout"><div class="date-card game-card"><div class="date-art">☕ <span>✦</span> 🌙</div><h3>Our next date</h3><label for="dateActivity">Aktivitas kencan</label><select id="dateActivity"><option value="Movie night 🎬">Movie night 🎬</option><option value="Video call dinner 🍜">Video call dinner 🍜</option><option value="Main game online 🎮">Main game online 🎮</option><option value="Virtual stargazing ✨">Virtual stargazing ✨</option><option value="Masak bareng dari jauh 🍳">Masak bareng dari jauh 🍳</option><option value="Deep talk sebelum tidur 💬">Deep talk sebelum tidur 💬</option></select><label for="dateWhen">Tanggal rencana</label><input id="dateWhen" type="date"><label for="dateNote">Catatan kecil</label><textarea id="dateNote" rows="2" maxlength="200" placeholder="Jangan lupa bawa camilan favorit..."></textarea><button id="saveDateBtn" class="btn btn-primary full">Simpan rencana date ♡</button></div><div class="upcoming-card game-card"><span class="eyebrow">MADE FOR TWO</span><h3>Rencana kita</h3><div id="datePlanDisplay" class="date-plan-empty">Belum ada rencana. Yuk, pilih date pertama kalian.</div><div class="date-doodle">♡</div></div></div>
+      </section>
+      <footer class="app-footer">Dibuat dengan ♡ untuk dua orang yang saling memilih. <span id="syncText">Demo lokal</span></footer>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
